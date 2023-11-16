@@ -12,20 +12,22 @@ let $itensLista = [
   {
     nome: 'Exemplo',
     categoria: 'jogo',
+    marcado: false,
     link: 'https://youtu.be/dQw4w9WgXcQ?si=hh1Yq6fvgwBQ4cJp',
-    marcado: false
+    imagem: null
     //imagem: add depois
   }];
 
 function insereItem($item){
-    const $itemEl = $("<li>", {"class": `categoria-${$item.categoria} item`});
-    const $elementosListaEl = $('.item');
+    let $itemEl = $("<li>", {"class": `categoria-${$item.categoria}`});
+    let $listaEl = $('#lista');
     $itemEl.html($item.nome);
     $itemEl.addClass('item');
 
     if($item.marcado === true)
       $item.addClass('marcado');
-    $elementosListaEl[0].before($item);
+  
+    $listaEl.prepend($itemEl);
   }
 $adicionarButton.click(e =>{
 
@@ -33,19 +35,31 @@ $adicionarButton.click(e =>{
 
 function registrarItem(e){
     let $itemInput = $('#novo-item-nome');
-    let $itemClasseEl = $('#nova-tarefa-categoria');
+    let $itemClasseEl = $('#item-categoria');
     let $itemAdd = {
-      nome: $itemInput.value(),
-      categoria: $itemClasseEl.value(),
-      marcado: false
+      nome: $itemInput.val(),
+      categoria: $itemClasseEl.val(),
+      marcado: false,
+      link: null,
+      imagem: null
     }
-    $itemInput.value('');
+    $itemInput.val('');
     $itemInput.focus();
     $itensLista.push($itemAdd);
     insereItem($itemAdd);
   }
-const $removerItem = $('.item');
-$removerItem.each( item =>{
-    item.remove();
+$('.item').remove(); //Remove itens de teste da lista
+$itensLista = jQuery.makeArray($itensLista);
+$itensLista.forEach((item)=>{
+  insereItem(item);
 });
+$('#link').fadeOut();
+$('#imagem').fadeOut();
+$adicionarButton.click(registrarItem);
+
+document.addEventListener('keypress', (e)=>{
+  let tecla = e.key;
+  if(tecla == 'Enter')
+    registrarItem();
+})
 
