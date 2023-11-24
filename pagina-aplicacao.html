@@ -17,8 +17,8 @@
       <input type="text" id="novo-item-nome" placeholder="Digite o novo item da lista" autofocus>
 
       <!-- Checkbox para inserir extras -->
-      <label><input type="checkbox" id="link-checkbox">Adicionar link</label>
-      <label><input type="checkbox" id="imagem-checkbox" >Adicionar imagem</label>
+      <label><input type="checkbox" id="link-checkbox" name="link">Adicionar link</label>
+      <label><input type="checkbox" id="imagem-checkbox" name="img">Adicionar imagem</label>
       <!-- Classificação -->       
       <select id="item-categoria">
         <option value="jogo">Jogo</option>
@@ -27,11 +27,19 @@
         <option value="livro">Livro</option>
         <option value="outro">Outro</option>
       </select>
-      
+      <select id="pesquisa">
+        <option value="defaut">🔎</option>
+        <option value="jogo">Jogo</option>
+        <option value="filme">Filme</option>
+        <option value="serie">Série</option>
+        <option value="livro">Livro</option>
+        <option value="outro">Outro</option>
+      </select>
       <button id="incluir-novo-item">+</button>
     </section>
     <input id="link" type="url" placeholder="https://youtu.be/dQw4w9WgXcQ?si=hh1Yq6fvgwBQ4cJp">
     <input type="file" id="imagem" accept=".jpg, .jpeg, .png">
+    <p id="error">Por favor, ative o Javascript.</p>
     <section>
       <ul id="lista">
         <!-- Exemplo de item da lista -->

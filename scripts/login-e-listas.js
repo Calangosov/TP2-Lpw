@@ -2,12 +2,13 @@
 let $nomeItemEl = $('#novo-item-nome');
 let $linkCheckbox = $('#link-checkbox');
 let $imagemCheckbox = $('#imagem-checkbox');
-let $categoriaSelector = $('#item-categoria');
 let $adicionarButton = $('#incluir-novo-item');
-let $linkInput = $('#link');
-let $imagemInput = $('#imagem');
-
-// Modelo de object do vetor:
+let $linkInput = $('#link'); 
+let $imgInput = $('#imagem');
+let $errorMsg = $('#error');
+$errorMsg.val('');
+$errorMsg.fadeOut();
+// Modelo de object do vetor: 
 let $itensLista = [
   {
     nome: 'Exemplo',
@@ -21,17 +22,21 @@ let $itensLista = [
 function insereItem($item){
     let $itemEl = $("<li>", {"class": `categoria-${$item.categoria}`});
     let $listaEl = $('#lista');
-    $itemEl.html($item.nome);
     $itemEl.addClass('item');
 
     if($item.marcado === true)
       $item.addClass('marcado');
-  
+    if($item.link != undefined && $item.link != null && $item.link != '' && $item.link != 'https://'){
+      let $itemLink = $("<a>", {"href": $item.link});
+      $itemEl.append($itemLink);
+      $itemLink.html($item.nome);
+    }
+    else 
+      $itemEl.html($item.nome);
+    
     $listaEl.prepend($itemEl);
+    $linkInput.val('https://');
   }
-$adicionarButton.click(e =>{
-
-})
 
 function registrarItem(e){
     let $itemInput = $('#novo-item-nome');
@@ -40,9 +45,15 @@ function registrarItem(e){
       nome: $itemInput.val(),
       categoria: $itemClasseEl.val(),
       marcado: false,
-      link: null,
+      link: $linkInput.val(),
       imagem: null
     }
+    if($itemInput.val() == ''){
+      $errorMsg.html('Erro: O nome do item não pode estar vazio.')
+      $errorMsg.fadeIn();
+      return;
+    }
+    $errorMsg.fadeOut();
     $itemInput.val('');
     $itemInput.focus();
     $itensLista.push($itemAdd);
@@ -53,8 +64,7 @@ $itensLista = jQuery.makeArray($itensLista);
 $itensLista.forEach((item)=>{
   insereItem(item);
 });
-$('#link').fadeOut();
-$('#imagem').fadeOut();
+
 $adicionarButton.click(registrarItem);
 
 document.addEventListener('keypress', (e)=>{
@@ -63,3 +73,28 @@ document.addEventListener('keypress', (e)=>{
     registrarItem();
 })
 
+$linkInput.fadeOut();
+$imgInput.fadeOut();
+
+$('#link-checkbox').change(()=>{
+  if($('#link-checkbox').prop( "checked" ))
+    $linkInput.fadeIn();
+  else
+  $linkInput.fadeOut();
+})
+$('#imagem-checkbox').change(()=>{
+  if($('#imagem-checkbox').prop( "checked" ))
+    $imgInput.fadeIn();
+  else
+   $imgInput.fadeOut();
+});
+/*let $pesquisa = $('#pesquisar');
+$pesquisa.change(()=>{
+  if($pesquisa.val() != 'default'){
+    $('.item').remove();
+   for(let item of $itensLista){
+    if(item.categoria == $pesquisa.val())
+      //Faz o append na lista. O else só volta o append de todo mundo
+   }
+  }
+});*/

@@ -218,6 +218,7 @@ section:not(#novo-item){
 }
 
 .item {
+  color: rgb(119, 119, 119);
   position: relative;
   transition: all 200ms ease;
 }
@@ -257,4 +258,14 @@ section:not(#novo-item){
   font-size: 75%;
   color: silver;
   float: right;
+}
+a{
+  color: rgb(119, 119, 119);
+}
+a:hover{
+  color: blue;
+}
+#error{
+  color: red;
+  font-size: 12px;
 }
