@@ -81,7 +81,7 @@ p{
   width: max-content;
   
 }
-#login{
+#loginHeader{
   border: none;  
 }
 html {
@@ -148,12 +148,11 @@ main > ul{
 }
 #novo-item input,
 #novo-item select,
-#novo-item button {
+button{
   font: inherit;
   outline: none;
   border: none;
   box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
-  
 }
 #novo-item label, input[type$="checkbox"]{
   font-size: 20px;
@@ -265,7 +264,79 @@ a{
 a:hover{
   color: blue;
 }
-#error{
+#error,.modal .error{
   color: red;
   font-size: 12px;
+}
+#info {
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  bottom: 15px;
+  float: right;
+  right: 15px;
+}
+.modal{
+  transition: all 350ms ease-in-out;
+  position: fixed;
+  opacity: 0;
+  transform: scale(0.5);
+  z-index: -1;
+  border: 2px solid darkblue;
+  background-color: rgb(89, 107, 141);
+  user-select: none;
+}
+#creditos.modal{
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+#popup-log-in, #popup-sign-up{
+  left: 50%;
+  top: 50%;
+  margin-top: -25vh;
+  margin-left: -35%;
+  width: 75%;
+  padding: 10px;
+}
+.modal input, .modal button{
+  display: block;
+  margin-bottom: 2px;
+}
+.modal button{
+  background-color: rgb(75, 75, 75, 0.8);
+  color: rgb(216, 216, 183, 0.6);
+}
+.modal.aparece {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 2;
+}
+.aparece > p{
+  font-size: 1em;
+  line-height: 1.3em;
+  font-weight: normal;
+  color: white;
+  text-align: center;
+}
+#fundo{
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: -1;
+  left: 0;
+  top: 0;
+  transition: all 350ms ease-in-out;
+}
+#fundo.clicavel{
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+#salvar{
+  position: absolute;
+  right: 5px; 
+  top: 30px;
+  display: inline-block;
 }

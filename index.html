@@ -11,9 +11,10 @@
     <header>
         <!--<img id="logotipo" alt="logotipo do site"> -->
         <h1>Catálogo digital</h1>
-        <button id="cadastrar" class="botao-header">Cadastrar</button>
-        <button id="login" class="botao-header">Login</button>
+        <button id="cadastrar" class="botao-header cadastrar">Cadastrar</button>
+        <button id="loginHeader" class="botao-header">Login</button>
     </header>
+    <div id="fundo"></div>
     <main>
         <section class="introducao-inicial">
             <p>O seu lugar para organizar seus entreterimentos futuros, sejam eles 
@@ -28,16 +29,29 @@
                 O catálogo digital foi criado com o objetivo de organizar seus interesses que visam ao seu lazer,
                 mas ainda não foram realizados, seja por falta de tempo, dinheiro ou vontade. Nele você pode categorizá-los
                 por importância, tipo e adicionar notas sobre eles. Tudo com o objetivo de tornar a sua vida mais fácil.
-
             </p>
         </section>
     </main>
-    <footer>
-        <p class="texto-rodape"> 
-            Site feito por Bernardo de Araújo<br>
-            Quando o JavaScript estiver completo, esta aba será modal
-        </p>
+    <div id="popup-sign-up" class="modal">
+        <label>Email:<input type="email" placeholder="nome@exemplo.com" id="email-signup"></label>
+        <label>Username:<input type="text" id="nome-signup"></label>
+        <label>Senha:<input type="password" id="senha-signup"></label>
+        <p class="error"></p>
+        <button id="sign-up">cadastrar</button>
+    </div>
+    <div id="popup-log-in" class="modal">
+        <label>Username:<input type="text" id="nome-login"></label>
+        <label>Senha:<input type="password" id="senha-login"></label>
+        <p class="error"></p>
+        <button id="log-in">log-in</button>
+    </div>
+    <img id="info" src="imgs/botao-info.png">
+    <footer id="creditos" class="modal">
+        <p>Site feito por Bernardo de Araújo Silva</p>
     </footer>
-    <script src="js.js"></script>
+      
+    <script src="scripts/jquery-3.7.1-min.js"></script>
+    <script src="scripts/listas.js"></script>
+    <script src="scripts/login.js"></script>
 </body>
 </html>

@@ -9,8 +9,9 @@
 <body>
   <header>
     <!--<img id="logotipo" alt="logotipo do site"> -->
-    <h1>Catálogo digital</h1>
+    <a href="index.html"><h1>Catálogo digital</h1></a>
     <p id="nome-usuario">nome-usuario</p>
+    <button id="salvar" class="botao-header">Salvar</button>
   </header>
   <main class="app">
     <section id="novo-item">
@@ -18,7 +19,7 @@
 
       <!-- Checkbox para inserir extras -->
       <label><input type="checkbox" id="link-checkbox" name="link">Adicionar link</label>
-      <label><input type="checkbox" id="imagem-checkbox" name="img">Adicionar imagem</label>
+      <!--<label><input type="checkbox" id="imagem-checkbox" name="img">Adicionar imagem</label> -->
       <!-- Classificação -->       
       <select id="item-categoria">
         <option value="jogo">Jogo</option>
@@ -28,7 +29,7 @@
         <option value="outro">Outro</option>
       </select>
       <select id="pesquisa">
-        <option value="defaut">🔎</option>
+        <option value="default">🔎</option>
         <option value="jogo">Jogo</option>
         <option value="filme">Filme</option>
         <option value="serie">Série</option>
@@ -50,8 +51,14 @@
         <li class="item categoria-outro marcado">Exemplo de item da lista</li>
       </ul>
     </section>
+    
   </main>
+  <img id="info" src="imgs/botao-info.png">
+<footer id="creditos" class="modal">
+  <p>Site feito por Bernardo de Araújo Silva</p>
+</footer>
+
   <script src="scripts/jquery-3.7.1-min.js"></script>
-  <script src="scripts/login-e-listas.js"></script>
+  <script src="scripts/listas.js"></script>
 </body>
 </html>
