@@ -3,9 +3,10 @@
 //////////////////////////////////////////////////////////////////////
 let $loginDiv = $('#popup-log-in');
 let $signupDiv = $('#popup-sign-up');
-let $emailInput = $('input[type^=email]')
-let $fundoEl = $('#fundo')
-let $erro = $('.error')
+let $emailInput = $('input[type^=email]');
+let $fundoEl = $('#fundo');
+let $erro = $('.error');
+//Janelas pop-up de cadastro e login
 $fundoEl.click(fecharPopup);
 $('.cadastrar').click(()=>{
     $signupDiv.addClass('aparece');
@@ -69,15 +70,15 @@ function fecharPopup(){
 // Declarações de variável
 let $nomeItemEl = $('#novo-item-nome');
 let $linkCheckbox = $('#link-checkbox');
-//let $imagemCheckbox = $('#imagem-checkbox');
+//let $imagemCheckbox = $('#imagem-checkbox');    Ideia descartada
 let $adicionarButton = $('#incluir-novo-item');
 let $linkInput = $('#link'); 
 let $imgInput = $('#imagem');
 let $errorMsg = $('#error');
 $errorMsg.val('');
 $errorMsg.fadeOut();
-let usuarioAtual = localStorage.getItem('usuarioAtual')
-$('#nome-usuario').html(usuarioAtual);
+let usuarioAtual = localStorage.getItem('usuarioAtual'); // O valor da variavel nao passa de uma página pra outra
+$('#nome-usuario').html(usuarioAtual);                   // por algum motivo
 let infoAtual = localStorage.getItem(usuarioAtual);
 infoAtual = JSON.parse(infoAtual);
 // Modelo de object do vetor: 
@@ -86,7 +87,7 @@ if(infoAtual.conteudo == null || infoAtual.conteudo == undefined)
   $itensLista  = [
     {
       nome: 'Exemplo',
-      categoria: 'jogo',
+      categoria: 'undefined',
       marcado: false,
       link: 'https://youtu.be/dQw4w9WgXcQ?si=hh1Yq6fvgwBQ4cJp',
       imagem: null
@@ -94,20 +95,21 @@ if(infoAtual.conteudo == null || infoAtual.conteudo == undefined)
     }];
 else
   $itensLista = JSON.parse(infoAtual.conteudo);
+//Insere item na lista, basicamente tradução do tarefas para procrastinar em jquery com adição
 function insereItem($item){
     let $itemEl = $("<li>", {"class": `categoria-${$item.categoria}`});
     let $listaEl = $('#lista');
     $itemEl.addClass('item');
 
     if($item.marcado === true)
-      $item.addClass('marcado');
+      $item.addClass('marcado');   // class não usada, mas que não aparecerá ao usuário
     if($item.link != undefined && $item.link != null && $item.link != '' && $item.link != 'https://'){
-      let $itemLink = $("<a>", {"href": $item.link});
+      let $itemLink = $("<a>", {"href": $item.link}); //Se for pra ter link, o texto muda no <a>
       $itemEl.append($itemLink);
       $itemLink.html($item.nome);
     }
     else 
-      $itemEl.html($item.nome);
+      $itemEl.html($item.nome); //caso contrário muda no <li>
 
     $listaEl.prepend($itemEl);
     $linkInput.val('https://');
@@ -119,9 +121,9 @@ function registrarItem(e){
     let $itemAdd = {
       nome: $itemInput.val(),
       categoria: $itemClasseEl.val(),
-      marcado: false,
+      marcado: false, //Ideia descartada
       link: $linkInput.val(),
-      imagem: null
+      imagem: null //Ideia descartada
     }
     if($itemInput.val() == ''){
       $errorMsg.html('Erro: O nome do item não pode estar vazio.')
@@ -136,11 +138,11 @@ function registrarItem(e){
   }
 $('.item').remove(); //Remove itens de teste da lista
 $itensLista = jQuery.makeArray($itensLista);
-$itensLista.forEach(insereItem);
+$itensLista.forEach(insereItem); 
 
 $adicionarButton.click(registrarItem);
 
-$('.categoria-undefined').remove();
+$('.categoria-undefined').remove(); //Remove qualquer item que tenha sido criado por erro
 document.addEventListener('keypress', (e)=>{
   let tecla = e.key;
   if(tecla == 'Enter')
